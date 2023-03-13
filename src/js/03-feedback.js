@@ -12,7 +12,6 @@ refs.form.addEventListener('input', throttle(handleFormInput, 500));
 
 function handleFormSubmit(event) {
   event.preventDefault();
-  event.target.reset();
 
   const {
     elements: { email, message },
@@ -22,7 +21,13 @@ function handleFormSubmit(event) {
     return alert('Please complete all required fields');
   }
 
+  const form = { email: email.value, message: message.value };
+
+  event.target.reset();
+
   localStorage.removeItem(STORAGE_KEY);
+
+  console.log(form);
 }
 
 function handleFormInput(event) {
